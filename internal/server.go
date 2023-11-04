@@ -19,12 +19,7 @@ func NewServer(ur *UserRepo, sr *SecretsRepo, r *gin.Engine) *server {
 	}
 }
 
-func (s *server) Run() {
+func (s *server) Execute() {
 	s.Routes()
-	if os.Getenv("PORT") == "" {
-		s.Router.Run()
-	} else {
-		s.Router.Run(":" + os.Getenv("PORT"))
-
-	}
+	s.Router.Run(":" + os.Getenv("PORT"))
 }
